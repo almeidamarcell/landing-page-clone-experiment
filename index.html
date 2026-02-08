@@ -1,0 +1,1977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Released - Build what matters, with customer feedback</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --purple: #6c3cf5;
+            --purple-dark: #5a2de0;
+            --dark: #141218;
+            --gray-bg: #f5f5f7;
+            --gray-text: #6b6b6b;
+            --dark-section: #1a1a2e;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #1a1a1a;
+            background: #fff;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ========== NAV ========== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 16px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.3s, backdrop-filter 0.3s;
+        }
+
+        .nav.scrolled {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            font-weight: 800;
+            font-size: 20px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-logo svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav.scrolled .nav-logo {
+            color: #1a1a1a;
+        }
+
+        .nav.scrolled .nav-logo svg rect {
+            fill: var(--purple);
+        }
+
+        .nav.scrolled .nav-logo svg path {
+            stroke: #fff;
+        }
+
+        .nav.scrolled .nav-links a {
+            color: #555;
+        }
+
+        .nav.scrolled .nav-links a:hover {
+            color: #1a1a1a;
+        }
+
+        .nav-cta {
+            background: transparent;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 100px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.3s, color 0.3s, border-color 0.3s;
+            border: 1.5px solid rgba(255,255,255,0.5);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .nav.scrolled .nav-cta {
+            background: transparent;
+            color: var(--purple);
+            border-color: var(--purple);
+        }
+
+        .nav.scrolled .nav-cta:hover {
+            background: var(--purple);
+            color: #fff;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            background: var(--purple);
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(0,0,0,0.1) 0%, transparent 50%);
+            padding: 180px 40px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.9);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 36px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 76px);
+            font-weight: 900;
+            color: #fff;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -2px;
+        }
+
+        .hero p {
+            font-size: clamp(16px, 2vw, 19px);
+            color: rgba(255,255,255,0.75);
+            max-width: 620px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 60px;
+        }
+
+        .btn-primary {
+            background: #fff;
+            color: var(--purple);
+            padding: 14px 32px;
+            border-radius: 100px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 100px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .hero-built-for {
+            position: relative;
+            z-index: 1;
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .hero-built-for span {
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .hero-built-for-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+        }
+
+        .hero-built-for-logos .logo-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .hero-built-for-logos .logo-item small {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+
+        /* ========== SOCIAL PROOF ========== */
+        .social-proof {
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .social-proof h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+        }
+
+        .logos-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .logo-placeholder {
+            font-size: 20px;
+            font-weight: 700;
+            color: #999;
+            opacity: 0.6;
+            letter-spacing: -0.5px;
+        }
+
+        /* ========== FEATURE SECTIONS ========== */
+        .section-gray {
+            background: var(--gray-bg);
+        }
+
+        .feature-section {
+            padding: 120px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-intro {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .feature-intro h2 {
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .feature-intro p {
+            font-size: 18px;
+            color: var(--gray-text);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .feature-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: visible;
+        }
+
+        .feature-block.reverse {
+            direction: rtl;
+        }
+
+        .feature-block.reverse > * {
+            direction: ltr;
+        }
+
+        .feature-text h2 {
+            font-size: clamp(32px, 3.5vw, 48px);
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .feature-text p {
+            font-size: 17px;
+            color: var(--gray-text);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .btn-dark {
+            display: inline-block;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 100px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-dark:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .feature-visual {
+            position: relative;
+            overflow: visible;
+        }
+
+        /* Card-style visuals */
+        .portal-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .portal-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .portal-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .portal-card-header {
+            height: 100px;
+            position: relative;
+        }
+
+        .portal-card-header.gradient-1 {
+            background: linear-gradient(135deg, #fff4e6, #ffe4cc);
+        }
+
+        .portal-card-header.gradient-2 {
+            background: linear-gradient(135deg, #e8e0ff, #f0e4ff, #ffe0f0);
+        }
+
+        .portal-card-header.gradient-3 {
+            background: linear-gradient(135deg, #ffe0cc, #ffd0e0, #e0d0ff);
+        }
+
+        .portal-card-body {
+            padding: 20px;
+        }
+
+        .portal-card-body h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .portal-card-body h4 .icon-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .portal-card-body p {
+            font-size: 13px;
+            color: var(--gray-text);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .portal-card-tags {
+            display: flex;
+            gap: 12px;
+        }
+
+        .portal-card-tags span {
+            font-size: 12px;
+            color: var(--gray-text);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .portal-card-update {
+            padding: 12px 20px;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .portal-card-update .badge-new {
+            background: #fee;
+            color: #e53935;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        /* Try it yourself section */
+        .try-section {
+            text-align: center;
+            padding: 80px 40px 100px;
+        }
+
+        .try-section h2 {
+            font-size: clamp(36px, 4vw, 56px);
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+
+        .try-section p {
+            font-size: 17px;
+            color: var(--gray-text);
+            margin-bottom: 48px;
+        }
+
+        .embed-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .embed-option {
+            text-align: left;
+            padding: 24px;
+            border-radius: 16px;
+            background: #fff;
+            border: 1px solid #eee;
+            transition: box-shadow 0.3s;
+        }
+
+        .embed-option:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .embed-option h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .embed-option p {
+            font-size: 14px;
+            color: var(--gray-text);
+            margin-bottom: 0;
+        }
+
+        /* Feedback section - dual tilted cards */
+        .feedback-visual-wrapper {
+            position: relative;
+            min-height: 580px;
+            width: 100%;
+        }
+
+        .feedback-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.04);
+            overflow: hidden;
+            position: absolute;
+        }
+
+        .feedback-card-list {
+            width: 310px;
+            left: -10px;
+            top: 50px;
+            transform: rotate(-3deg);
+            z-index: 2;
+        }
+
+        .feedback-card-detail {
+            width: 330px;
+            right: -20px;
+            top: 20px;
+            transform: rotate(2.5deg);
+            z-index: 1;
+        }
+
+        /* List card internals */
+        .fc-list-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .fc-list-header h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .fc-list-header-icons {
+            display: flex;
+            gap: 8px;
+            color: #bbb;
+        }
+
+        .fc-list-group-label {
+            padding: 10px 20px 4px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #999;
+        }
+
+        .fc-list-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .fc-list-item:hover {
+            background: #f8f8fa;
+        }
+
+        .fc-list-item.active {
+            background: #2563eb;
+            border-radius: 10px;
+            margin: 2px 8px;
+            padding: 10px 14px;
+        }
+
+        .fc-list-item.active .fc-item-name,
+        .fc-list-item.active .fc-item-text,
+        .fc-list-item.active .fc-item-time {
+            color: #fff;
+        }
+
+        .fc-item-radio {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid #d0d0d0;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .fc-list-item.active .fc-item-radio {
+            border-color: #fff;
+            background: #fff;
+            box-shadow: inset 0 0 0 3px #2563eb;
+        }
+
+        .fc-item-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e8d5b7, #c4a882);
+            flex-shrink: 0;
+        }
+
+        .fc-item-avatar.av2 { background: linear-gradient(135deg, #d5c8e8, #b0a0cc); }
+        .fc-item-avatar.av3 { background: linear-gradient(135deg, #c8dce8, #a0b8cc); }
+        .fc-item-avatar.av4 { background: linear-gradient(135deg, #e8d5d5, #ccaaaa); }
+        .fc-item-avatar.av5 { background: linear-gradient(135deg, #d5e8d8, #aaccb0); }
+        .fc-item-avatar.av6 { background: linear-gradient(135deg, #e8e0c8, #ccbfa0); }
+
+        .fc-item-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .fc-item-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .fc-item-text {
+            font-size: 12px;
+            color: #666;
+            margin-top: 1px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .fc-item-time {
+            font-size: 11px;
+            color: #bbb;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* Detail card internals */
+        .fc-detail-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+            padding: 12px 16px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .fc-detail-topbar .status {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        .fc-detail-status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #2563eb;
+        }
+
+        .fc-detail-user {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 16px 8px;
+        }
+
+        .fc-detail-user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #c8dce8, #a0b8cc);
+        }
+
+        .fc-detail-user .user-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .fc-detail-user .user-meta {
+            font-size: 11px;
+            color: #999;
+        }
+
+        .fc-detail-user .user-meta .via-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            background: #fff7ed;
+            color: #c27803;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 10px;
+        }
+
+        .fc-detail-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin: 6px 16px 8px;
+            padding: 3px 10px;
+            background: #f0f4ff;
+            color: #2563eb;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .fc-detail-tag .todo-label {
+            background: #e8e8e8;
+            color: #666;
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+            margin-left: 4px;
+        }
+
+        .fc-detail-title {
+            padding: 8px 16px 4px;
+            font-size: 17px;
+            font-weight: 800;
+            color: #1a1a1a;
+        }
+
+        .fc-detail-body {
+            padding: 8px 16px 16px;
+            font-size: 12px;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .fc-detail-reply {
+            border-top: 1px solid #f0f0f0;
+            padding: 14px 16px;
+        }
+
+        .fc-detail-reply-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .fc-reply-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e8d5d5, #ccaaaa);
+        }
+
+        .fc-reply-name {
+            font-size: 12px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .fc-reply-time {
+            font-size: 11px;
+            color: #bbb;
+        }
+
+        .fc-reply-body {
+            font-size: 12px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .fc-reply-meta {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+            font-size: 11px;
+            color: #bbb;
+        }
+
+        .fc-reply-meta .internal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            color: #999;
+            font-size: 10px;
+        }
+
+        .fc-add-reply {
+            padding: 12px 16px;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .fc-add-reply-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ddd, #bbb);
+        }
+
+        .fc-add-reply input {
+            border: none;
+            outline: none;
+            font-size: 12px;
+            color: #aaa;
+            flex: 1;
+        }
+
+        /* Rainbow border card */
+        .rainbow-card {
+            position: relative;
+            max-width: 520px;
+            border-radius: 20px;
+            padding: 3px;
+            background: conic-gradient(from 0deg, #ff6b35, #ff2d87, #6c3cf5, #00d4aa, #ffd700, #ff6b35);
+            animation: rainbowSpin 6s linear infinite;
+        }
+
+        @keyframes rainbowSpin {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        .rainbow-card-inner {
+            background: #fff;
+            border-radius: 18px;
+            padding: 40px;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .rainbow-card-inner .ai-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #f0ebff, #ffe0f0);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--purple);
+            margin-bottom: 16px;
+            width: fit-content;
+        }
+
+        .rainbow-card-inner p {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* Integration diagram */
+        .integration-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 360px;
+            position: relative;
+        }
+
+        .integration-center {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: #2684FF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(38, 132, 255, 0.3);
+            z-index: 2;
+        }
+
+        .integration-node {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            background: #1a3a2a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            border: 2px solid #e8e8e8;
+        }
+
+        .integration-node svg {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+        }
+
+        .integration-center svg {
+            width: 36px;
+            height: 36px;
+            fill: #fff;
+        }
+
+        /* ========== TESTIMONIALS ========== */
+        .testimonials {
+            background: var(--gray-bg);
+            padding: 120px 40px;
+        }
+
+        .testimonials-header {
+            max-width: 600px;
+            margin-bottom: 60px;
+        }
+
+        .testimonials-header h2 {
+            font-size: clamp(36px, 4vw, 52px);
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .testimonials-header h2 span {
+            font-weight: 400;
+        }
+
+        .testimonials-header p {
+            font-size: 17px;
+            color: var(--gray-text);
+            line-height: 1.6;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        }
+
+        .testimonial-logo {
+            font-size: 18px;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .testimonial-text {
+            font-size: 15px;
+            color: #444;
+            line-height: 1.7;
+            flex: 1;
+            margin-bottom: 24px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ddd, #aaa);
+        }
+
+        .testimonial-info .name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .testimonial-info .role {
+            font-size: 13px;
+            color: var(--gray-text);
+        }
+
+        /* ========== SECURITY ========== */
+        .security {
+            background: var(--dark);
+            padding: 120px 40px;
+        }
+
+        .security-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .security-text h2 {
+            font-size: clamp(36px, 4vw, 52px);
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+
+        .security-text h2 span {
+            color: rgba(255,255,255,0.4);
+        }
+
+        .security-text p {
+            font-size: 17px;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.7;
+        }
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .security-item {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .security-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 4px;
+        }
+
+        .security-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: rgba(255,255,255,0.5);
+            fill: none;
+        }
+
+        .security-item h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .security-item p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.6;
+        }
+
+        .security-item a {
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: var(--dark);
+            padding: 80px 40px 60px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-links {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 40px;
+        }
+
+        .footer-col h5 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 14px;
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            padding: 4px 0;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: rgba(255,255,255,0.85);
+        }
+
+        .footer-brand {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-brand-name {
+            font-size: clamp(80px, 15vw, 200px);
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -8px;
+            line-height: 0.85;
+            margin-bottom: 40px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-backed {
+            color: rgba(255,255,255,0.4);
+            font-size: 13px;
+        }
+
+        .footer-backed strong {
+            display: block;
+            color: rgba(255,255,255,0.6);
+            font-size: 15px;
+            margin-top: 4px;
+            letter-spacing: 2px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-socials a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .footer-socials a:hover {
+            border-color: rgba(255,255,255,0.5);
+            color: #fff;
+        }
+
+        .footer-socials svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ========== ANIMATIONS ========== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero h1 {
+            animation: heroFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+        }
+
+        .hero p {
+            animation: heroFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+        }
+
+        .hero-buttons {
+            animation: heroFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+        }
+
+        .hero-built-for {
+            animation: heroFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+        }
+
+        @keyframes heroFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Text glitch/glow effect for hero */
+        .hero h1 {
+            text-shadow: 0 0 40px rgba(255,255,255,0.15);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 900px) {
+            .feature-block {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .feature-block.reverse {
+                direction: ltr;
+            }
+
+            .portal-cards {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+
+            .embed-options {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .security-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* Stagger children animation */
+        .stagger > * {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .stagger.visible > *:nth-child(1) { transition-delay: 0s; }
+        .stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
+        .stagger.visible > *:nth-child(3) { transition-delay: 0.2s; }
+        .stagger.visible > *:nth-child(4) { transition-delay: 0.3s; }
+        .stagger.visible > *:nth-child(5) { transition-delay: 0.4s; }
+        .stagger.visible > *:nth-child(6) { transition-delay: 0.5s; }
+
+        .stagger.visible > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav" id="mainNav">
+        <a href="#" class="nav-logo">
+            <svg viewBox="0 0 28 28" fill="none">
+                <rect width="28" height="28" rx="6" fill="white"/>
+                <path d="M8 14l4 4 8-8" stroke="#6c3cf5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Released
+        </a>
+        <ul class="nav-links">
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">What's New</a></li>
+        </ul>
+        <a href="#" class="nav-cta">Start for free</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-badge">
+            <span>NEW: Sync Confluence with Zendesk</span>
+            <svg viewBox="0 0 16 16" fill="none"><path d="M6 12l4-4-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h1>Build what matters,<br>with customer feedback</h1>
+        <p>Share your roadmaps and ideas, collect feedback, and close the loop with AI generated release notes.</p>
+        <div class="hero-buttons">
+            <a href="#" class="btn-primary">Start for free</a>
+            <a href="#" class="btn-secondary">Book a demo</a>
+        </div>
+        <div class="hero-built-for">
+            <span>Purpose-built for</span>
+            <div class="hero-built-for-logos">
+                <div class="logo-item">
+                    <small>ATLASSIAN</small>
+                </div>
+                <div class="logo-item">
+                    Product Discovery
+                </div>
+                <div class="logo-item">
+                    <small>ATLASSIAN</small>
+                </div>
+                <div class="logo-item">
+                    Jira
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <section class="social-proof fade-in">
+        <h3>Loved by hundreds of product teams</h3>
+        <div class="logos-row">
+            <span class="logo-placeholder">Sensormatic</span>
+            <span class="logo-placeholder">SalesRabbit</span>
+            <span class="logo-placeholder">Stanford University</span>
+            <span class="logo-placeholder">Stake</span>
+            <span class="logo-placeholder">TOPIA</span>
+        </div>
+    </section>
+
+    <!-- PRODUCT HUB -->
+    <section class="section-gray">
+        <div class="feature-section fade-in">
+            <div class="feature-intro">
+                <h2>A central hub for your product communication</h2>
+                <p>Turn your roadmaps into a dedicated Idea Portal. Effortlessly share roadmaps with customers and stakeholders, and collect their feedback in one place.</p>
+            </div>
+            <a href="#" class="btn-dark" style="display: block; width: fit-content; margin: 0 auto 60px;">Learn more</a>
+
+            <div class="portal-cards stagger">
+                <div class="portal-card">
+                    <div class="portal-card-header gradient-1"></div>
+                    <div class="portal-card-body">
+                        <h4>
+                            <span class="icon-dot" style="background: #f5a623;">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect width="14" height="14" rx="3" fill="#f5a623"/><path d="M4 7l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            Beta Hub
+                        </h4>
+                        <p>Get detailed updates on product features in private beta.</p>
+                        <div class="portal-card-tags">
+                            <span>
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 3h8M2 6h8M2 9h5" stroke="#999" stroke-width="1.2" stroke-linecap="round"/></svg>
+                                Changelog
+                            </span>
+                            <span>
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="4" stroke="#999" stroke-width="1.2"/></svg>
+                                Roadmap
+                            </span>
+                        </div>
+                    </div>
+                    <div class="portal-card-update">
+                        Portal Access Controls
+                        <span style="color: #aaa; font-size: 12px;">Feb 13, 2025</span>
+                    </div>
+                </div>
+
+                <div class="portal-card">
+                    <div class="portal-card-header gradient-2"></div>
+                    <div class="portal-card-body">
+                        <h4>
+                            <span class="icon-dot" style="background: linear-gradient(135deg, #6c3cf5, #ff6b9d);">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect width="14" height="14" rx="3" fill="url(#grad1)"/><defs><linearGradient id="grad1"><stop stop-color="#6c3cf5"/><stop offset="1" stop-color="#ff6b9d"/></linearGradient></defs></svg>
+                            </span>
+                            Demo
+                        </h4>
+                        <p>Product Hub demo portal. Updates and roadmaps are for demo purposes only.</p>
+                        <div class="portal-card-tags">
+                            <span>
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 3h8M2 6h8M2 9h5" stroke="#999" stroke-width="1.2" stroke-linecap="round"/></svg>
+                                Changelog
+                            </span>
+                            <span>
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="4" stroke="#999" stroke-width="1.2"/></svg>
+                                Roadmap
+                            </span>
+                        </div>
+                    </div>
+                    <div class="portal-card-update">
+                        Task Search and Sharing Updates
+                        <span style="color: #aaa; font-size: 12px;">2 days ago</span>
+                    </div>
+                </div>
+
+                <div class="portal-card">
+                    <div class="portal-card-header gradient-3"></div>
+                    <div class="portal-card-body">
+                        <h4>
+                            <span class="icon-dot" style="background: #6c3cf5;">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect width="14" height="14" rx="3" fill="#6c3cf5"/><path d="M4 7l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            Released
+                        </h4>
+                        <p>Discover the latest features of Released and see what's coming up on our Roadmap.</p>
+                        <div class="portal-card-tags">
+                            <span>
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 3h8M2 6h8M2 9h5" stroke="#999" stroke-width="1.2" stroke-linecap="round"/></svg>
+                                Changelog
+                            </span>
+                            <span>
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="4" stroke="#999" stroke-width="1.2"/></svg>
+                                Roadmap
+                            </span>
+                        </div>
+                    </div>
+                    <div class="portal-card-update">
+                        <span class="badge-new">New</span>
+                        Workspace Dashboards
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRY IT YOURSELF -->
+    <section class="try-section fade-in">
+        <h2>Try it yourself</h2>
+        <p>Launch your portal on a custom domain or embed it directly within your website or app.</p>
+        <div class="embed-options stagger">
+            <div class="embed-option">
+                <h4>Standalone portal</h4>
+                <p>Host your product portal on your own domain.</p>
+            </div>
+            <div class="embed-option">
+                <h4>Page embed</h4>
+                <p>Add the portal as a full page embed to your website or documentation.</p>
+            </div>
+            <div class="embed-option">
+                <h4>Widget embed</h4>
+                <p>Embed the portal as a popup widget in your app or website.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CUSTOMER FEEDBACK -->
+    <section class="section-gray">
+        <div class="feature-block fade-in" style="align-items: start;">
+            <div class="feature-text" style="padding-top: 40px;">
+                <h2>Customer feedback<br>in Jira</h2>
+                <p>Know what to build, faster. Released delivers user feedback directly to your inbox and Jira work items, turning opinions into actionable insights in record time.</p>
+                <a href="#" class="btn-dark">Learn more</a>
+            </div>
+            <div class="feature-visual">
+                <div class="feedback-visual-wrapper">
+                    <!-- LEFT CARD: Feedback List -->
+                    <div class="feedback-card feedback-card-list">
+                        <div class="fc-list-header">
+                            <h4>All feedback</h4>
+                            <div class="fc-list-header-icons">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M4 8h8M6 12h4" stroke="#bbb" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M8 3l-3 3M8 3l3 3" stroke="#bbb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 13V3M8 13l-3-3M8 13l3-3" stroke="#bbb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                        </div>
+                        <div class="fc-list-group-label">Today</div>
+
+                        <div class="fc-list-item">
+                            <div class="fc-item-radio"></div>
+                            <div class="fc-item-avatar"></div>
+                            <div class="fc-item-body">
+                                <div class="fc-item-name">Donald Stephens</div>
+                                <div class="fc-item-text">Add a performance tracker for battery efficiency</div>
+                            </div>
+                            <div class="fc-item-time">32 min ago</div>
+                        </div>
+
+                        <div class="fc-list-item">
+                            <div class="fc-item-radio"></div>
+                            <div class="fc-item-avatar av2"></div>
+                            <div class="fc-item-body">
+                                <div class="fc-item-name">Crystal Wu</div>
+                                <div class="fc-item-text">Implement customizable driving modes</div>
+                            </div>
+                            <div class="fc-item-time">4 hours ago</div>
+                        </div>
+
+                        <div class="fc-list-item active">
+                            <div class="fc-item-radio"></div>
+                            <div class="fc-item-avatar av3"></div>
+                            <div class="fc-item-body">
+                                <div class="fc-item-name">Joshua Williams</div>
+                                <div class="fc-item-text">Enhance voice command features for navigation</div>
+                            </div>
+                            <div class="fc-item-time">7 hours ago</div>
+                        </div>
+
+                        <div class="fc-list-item">
+                            <div class="fc-item-radio"></div>
+                            <div class="fc-item-avatar av4"></div>
+                            <div class="fc-item-body">
+                                <div class="fc-item-name">Samuel Hall</div>
+                                <div class="fc-item-text">Develop a community feature for car meetups</div>
+                            </div>
+                            <div class="fc-item-time">9 hour ago</div>
+                        </div>
+
+                        <div class="fc-list-item">
+                            <div class="fc-item-radio"></div>
+                            <div class="fc-item-avatar av5"></div>
+                            <div class="fc-item-body">
+                                <div class="fc-item-name">Molly Clarke</div>
+                                <div class="fc-item-text">Introduce a nostalgic sound library for a vintage driving experience</div>
+                            </div>
+                            <div class="fc-item-time">12 hours ago</div>
+                        </div>
+
+                        <div class="fc-list-item">
+                            <div class="fc-item-radio"></div>
+                            <div class="fc-item-avatar av6"></div>
+                            <div class="fc-item-body">
+                                <div class="fc-item-name">Andres Ramos</div>
+                                <div class="fc-item-text">Add a smart parking assist tool</div>
+                            </div>
+                            <div class="fc-item-time">12hours ago</div>
+                        </div>
+
+                        <div class="fc-list-group-label">Last 7 days</div>
+                        <div class="fc-list-item">
+                            <div class="fc-item-radio"></div>
+                            <div class="fc-item-avatar"></div>
+                            <div class="fc-item-body">
+                                <div class="fc-item-name">Donald Stephens</div>
+                                <div class="fc-item-text">Create an eco-friendly driving mode</div>
+                            </div>
+                            <div class="fc-item-time">1 day ago</div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT CARD: Detail View -->
+                    <div class="feedback-card feedback-card-detail">
+                        <div class="fc-detail-topbar">
+                            <div class="status">
+                                <div class="fc-detail-status-dot"></div>
+                                Open
+                            </div>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M6 2h6v6" stroke="#bbb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 2L6 8" stroke="#bbb" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            <span style="color: #ccc;">...</span>
+                        </div>
+
+                        <div class="fc-detail-user">
+                            <div class="fc-detail-user-avatar"></div>
+                            <div>
+                                <div class="user-name">Joshua Williams <span class="user-meta">via <span class="via-badge">Rivian</span></span></div>
+                                <div class="user-meta">7 hours ago</div>
+                            </div>
+                        </div>
+
+                        <div class="fc-detail-tag">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="2" y="2" width="8" height="8" rx="1.5" stroke="#2563eb" stroke-width="1.2"/></svg>
+                            Improve voice navigation
+                            <span class="todo-label">TO DO</span>
+                        </div>
+
+                        <div class="fc-detail-title">Enhance voice command feature for navigation</div>
+
+                        <div class="fc-detail-body">
+                            I love my Rivian, but navigation would be so much better with full voice control. Right now, I can do a few basics, but I still have to tap the screen to change routes or find places, which is distracting.<br><br>
+                            I'd like to be able to say things like "Navigate to 123 Main Street," "Find the nearest charger," "Avoid highways," or "Add a stop at Trader Joe's" without touching anything.
+                        </div>
+
+                        <div class="fc-detail-reply">
+                            <div class="fc-detail-reply-header">
+                                <div class="fc-reply-avatar"></div>
+                                <div class="fc-reply-name">Stephanie Auer</div>
+                                <div class="fc-reply-time">6 hours ago</div>
+                            </div>
+                            <div class="fc-reply-body">
+                                Thanks for the suggestion &mdash; we agree that stronger voice controls for navigation would improve safety and convenience. We're exploring ways to handle full route management, charging stops, and points of interest entirely by voice.
+                            </div>
+                            <div class="fc-reply-meta">
+                                <span class="internal-badge">
+                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="#bbb" stroke-width="1"/></svg>
+                                    Internal note
+                                </span>
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M10 6L6 10" stroke="#bbb" stroke-width="1.2" stroke-linecap="round"/><path d="M6 10V6h4" stroke="#bbb" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                        </div>
+
+                        <div class="fc-add-reply">
+                            <div class="fc-add-reply-avatar"></div>
+                            <input type="text" placeholder="Add a reply..." disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TAILORED ROADMAPS -->
+    <div class="feature-block reverse fade-in">
+        <div class="feature-text">
+            <h2>Tailored Roadmaps</h2>
+            <p>Keep everyone on the same page about where your product is headed. Share live, tailored roadmaps directly from Jira.</p>
+            <a href="#" class="btn-dark">Learn more</a>
+        </div>
+        <div class="feature-visual">
+            <div style="background: #f8f8f8; border-radius: 16px; padding: 32px; min-height: 280px; position: relative; overflow: hidden; box-shadow: 0 2px 20px rgba(0,0,0,0.05);">
+                <div style="display: flex; gap: 8px; margin-bottom: 24px;">
+                    <div style="width: 100%; height: 8px; background: #e8e4f8; border-radius: 4px;"></div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="font-size: 13px; color: #888; width: 120px;">Dark Mode Support</span>
+                        <div style="flex: 1; height: 24px; background: linear-gradient(90deg, var(--purple), #9b7cf5); border-radius: 6px; opacity: 0.7;"></div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="font-size: 13px; color: #888; width: 120px;">Mobile Check Deposit</span>
+                        <div style="flex: 1; height: 24px; background: linear-gradient(90deg, #4caf50, #81c784); border-radius: 6px; opacity: 0.7; margin-left: 40px;"></div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="font-size: 13px; color: #888; width: 120px;">API v2 Release</span>
+                        <div style="flex: 1; height: 24px; background: linear-gradient(90deg, #ff9800, #ffb74d); border-radius: 6px; opacity: 0.7; margin-left: 80px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCT UPDATES -->
+    <section class="section-gray">
+        <div class="feature-block fade-in">
+            <div class="feature-text">
+                <h2>Product updates that write themselves</h2>
+                <p>Engage customers and stakeholders with stunning product updates, effortlessly generated from your Jira tickets.</p>
+                <a href="#" class="btn-dark">Learn more</a>
+            </div>
+            <div class="feature-visual">
+                <div class="rainbow-card">
+                    <div class="rainbow-card-inner">
+                        <div class="ai-label">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 4.5H13l-3.5 2.5L11 13 7 10l-4 3 1.5-5L1 5.5h4.5L7 1z" fill="var(--purple)"/></svg>
+                            AI Generated
+                        </div>
+                        <p>Publishing release notes just got a whole lot easier. Focus on telling engaging stories for your headline features while the AI copywriter takes care of the rest.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SYNC ZENDESK -->
+    <div class="feature-block reverse fade-in">
+        <div class="feature-text">
+            <h2>Sync Updates<br>with Zendesk</h2>
+            <p>Effortlessly turn your Confluence pages into Zendesk Guide articles.</p>
+            <a href="#" class="btn-dark">Learn more</a>
+        </div>
+        <div class="feature-visual">
+            <div class="integration-diagram">
+                <div class="integration-center">
+                    <svg viewBox="0 0 36 36" fill="none">
+                        <path d="M18 8L28 18L18 28L8 18L18 8Z" fill="white"/>
+                    </svg>
+                </div>
+                <!-- Surrounding nodes -->
+                <div class="integration-node" style="top: 0; left: 50%; transform: translateX(-50%);">
+                    <svg viewBox="0 0 24 24" fill="white"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+                </div>
+                <div class="integration-node" style="top: 50%; right: 0; transform: translateY(-50%);">
+                    <svg viewBox="0 0 24 24" fill="white"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+                </div>
+                <div class="integration-node" style="bottom: 0; left: 50%; transform: translateX(-50%);">
+                    <svg viewBox="0 0 24 24" fill="white"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+                </div>
+                <div class="integration-node" style="top: 50%; left: 0; transform: translateY(-50%);">
+                    <svg viewBox="0 0 24 24" fill="white"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+                </div>
+                <!-- Connection lines via SVG -->
+                <svg style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;" viewBox="0 0 400 360">
+                    <line x1="200" y1="60" x2="200" y2="140" stroke="#ddd" stroke-width="1.5"/>
+                    <line x1="280" y1="180" x2="340" y2="180" stroke="#ddd" stroke-width="1.5"/>
+                    <line x1="200" y1="220" x2="200" y2="300" stroke="#ddd" stroke-width="1.5"/>
+                    <line x1="120" y1="180" x2="60" y2="180" stroke="#ddd" stroke-width="1.5"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div class="testimonials-header fade-in">
+                <h2><strong>Loved</strong> <span>by builders</span></h2>
+                <p>Join the growing number of product teams who leverage Released to simplify communication with customers and stakeholders.</p>
+            </div>
+
+            <div class="testimonials-grid stagger">
+                <div class="testimonial-card">
+                    <div class="testimonial-logo" style="color: #333;">Sascha R.</div>
+                    <div class="testimonial-text">Being able to create something I actually dare put on my website, just out of my existing Jira issues and almost zero effort, is mind-blowing. Great job!</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar"></div>
+                        <div class="testimonial-info">
+                            <div class="name">Sascha Reuter</div>
+                            <div class="role">CEO</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-logo" style="color: #2196F3;">Daniel R.</div>
+                    <div class="testimonial-text">Love the product and found it useful as a tool to help us reduce time it takes to get our go to market plans published.</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar"></div>
+                        <div class="testimonial-info">
+                            <div class="name">Daniel Richardson</div>
+                            <div class="role">Chief Product Officer</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-logo" style="color: #4caf50;">Jairo C.</div>
+                    <div class="testimonial-text">It takes less than 15 minutes from the moment you install the app to the moment you're publishing your first release note.</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar"></div>
+                        <div class="testimonial-info">
+                            <div class="name">Jairo Cabello</div>
+                            <div class="role">Product Manager</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-logo" style="color: #FF5722;">Priyadarshani M.</div>
+                    <div class="testimonial-text">The AI features and custom prompts work surprisingly well. With just a few tweaks, we were able to get really good results.</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar"></div>
+                        <div class="testimonial-info">
+                            <div class="name">Priyadarshani Mishra</div>
+                            <div class="role">Solution Architect</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-logo" style="color: #f57c00;">Daniel F.</div>
+                    <div class="testimonial-text">It's a real time-saver, easily 10 times faster than starting from scratch and very easy to use. Give it a go. You won't be disappointed.</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar"></div>
+                        <div class="testimonial-info">
+                            <div class="name">Daniel Franz</div>
+                            <div class="role">Founder/CEO</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-logo" style="color: #009688;">Vincent M.</div>
+                    <div class="testimonial-text">At a press of a button, with the help of AI powered notes, we can generate release notes and post them to all our channels easily.</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar"></div>
+                        <div class="testimonial-info">
+                            <div class="name">Vincent Mutambuki</div>
+                            <div class="role">Managing Partner</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECURITY -->
+    <section class="security fade-in">
+        <div class="security-inner">
+            <div class="security-text">
+                <h2><span>Designed for</span><br>security and<br>scale.</h2>
+                <p>Sleep soundly with state-of-the-art user management and top-tier security, all seamlessly powered by the Atlassian platform. Say goodbye to the hassle of maintaining a separate platform, provisioning users, and syncing data.</p>
+            </div>
+            <div class="security-grid stagger">
+                <div class="security-item">
+                    <div class="security-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h4>SOC 2 Type 2</h4>
+                    <p>SOC 2 type 2 certified. Regular third-party audits and penetration tests.</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4M10 17l5-5-5-5M13 12H3"/></svg>
+                    </div>
+                    <h4>SAML SSO</h4>
+                    <p>Automate user provisioning, and sync with Active Directory.</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                    </div>
+                    <h4>User management</h4>
+                    <p>No separate app to log into. Seamlessly integrates with your Atlassian user management.</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                    </div>
+                    <h4>Encryption</h4>
+                    <p>Your data is encrypted in transit and at rest. Never stored or used for training AI models.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-links">
+            <div class="footer-col">
+                <h5>Product</h5>
+                <a href="#">Product Hub</a>
+                <a href="#">Roadmaps</a>
+                <a href="#">Release notes</a>
+                <a href="#">Feedback</a>
+                <a href="#">Pricing</a>
+                <a href="#">Documentation</a>
+                <a href="#">Support</a>
+            </div>
+            <div class="footer-col">
+                <h5>Use cases</h5>
+                <a href="#">Portals for Jira</a>
+                <a href="#">External sharing</a>
+                <a href="#">Stakeholder feedback</a>
+                <a href="#">Release notes</a>
+            </div>
+            <div class="footer-col">
+                <h5>Resources</h5>
+                <a href="#">Blog</a>
+                <a href="#">Stakeholder Communication</a>
+                <a href="#">Roadmap communication</a>
+                <a href="#">Product Roadmaps</a>
+                <a href="#">Templates</a>
+                <a href="#">Glossary</a>
+            </div>
+            <div class="footer-col">
+                <h5>Compare</h5>
+                <a href="#">Productboard</a>
+                <a href="#">Aha!</a>
+                <a href="#">Canny</a>
+                <a href="#">Beamer</a>
+                <a href="#">Cycle.app</a>
+            </div>
+            <div class="footer-col">
+                <h5>Company</h5>
+                <a href="#">Partners</a>
+                <a href="#">Trust center</a>
+                <a href="#">Security</a>
+                <a href="#">Privacy</a>
+                <a href="#">SLA</a>
+            </div>
+        </div>
+        <div class="footer-brand">
+            <div class="footer-brand-name">Released</div>
+            <div class="footer-bottom">
+                <div class="footer-backed">
+                    Backed by
+                    <strong>ATLASSIAN Ventures</strong>
+                </div>
+                <div class="footer-socials">
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                    </a>
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.fade-in, .stagger').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Sticky nav background - switch when leaving hero
+        const hero = document.querySelector('.hero');
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            const heroBottom = hero.offsetTop + hero.offsetHeight - 80;
+            if (window.scrollY > heroBottom) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth parallax for hero grid
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero');
+            const scrollY = window.scrollY;
+            if (scrollY < window.innerHeight) {
+                hero.style.backgroundPositionY = `${scrollY * 0.3}px`;
+            }
+        });
+    </script>
+</body>
+</html>
