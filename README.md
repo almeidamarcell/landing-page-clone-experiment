@@ -28,7 +28,7 @@ Pure HTML/CSS/JS. No frameworks, no build tools. One file.
 
 ## License
 
-MIT - do whatever you want with it.
+CC BY-NC 4.0 - This is a design study based on [Released](https://www.released.so/)'s original design. See [LICENSE](LICENSE) for details.
 
 ## Disclaimer
 
